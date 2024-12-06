@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - URL Shortener</title>
+    <!-- Link to Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+
+    <div class="max-w-5xl mx-auto px-4 py-6">
+        <h1 class="text-3xl font-bold mb-4">Welcome, {{ current_user.username }}!</h1>
+        <a href="{{ url_for('logout') }}" class="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300">Logout</a>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">Your Shortened Links</h2>
+        
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <ul class="divide-y divide-gray-200">
+                {% for link in links %}
+                    <li class="p-4 hover:bg-gray-100 transition duration-300">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <strong class="block text-gray-700">Original URL:</strong>
+                                <a href="{{ link.long_url }}" target="_blank" class="text-blue-600 hover:underline">{{ link.long_url }}</a>
+                            </div>
+                            <div class="ml-4">
+                                <strong class="block text-gray-700">Shortened URL:</strong>
+                                <a href="{{ url_for('redirect_url', short_url=link.short_url) }}" target="_blank" class="text-green-600 hover:underline">{{ link.short_url }}</a>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

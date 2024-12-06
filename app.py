@@ -104,6 +104,13 @@ def result(short_url):
     flash('URL not found or unauthorized access.', 'danger')
     return redirect(url_for('index'))
 
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    user = current_user
+    links = URLMapping.query.filter_by(user_id=user.id).all()
+    return render_template('dashboard.html', links=links)
+
 # Route to redirect to the original URL
 @app.route('/<short_url>')
 def redirect_url(short_url):
