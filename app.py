@@ -102,7 +102,7 @@ def result(short_url):
     if mapping:
         return render_template('result.html', short_url=short_url, long_url=mapping.long_url)
     flash('URL not found or unauthorized access.', 'danger')
-    return redirect(url_for('index'))
+    return redirect(url_for('dashboard'))
 
 @app.route('/dashboard')
 @login_required
