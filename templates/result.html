@@ -5,12 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Result</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        function copyToClipboard() {
+            const copyText = document.getElementById('shortUrl');
+            navigator.clipboard.writeText(copyText.textContent).then(() => {
+                alert('Short URL copied to clipboard!');
+            }).catch(err => {
+                alert('Failed to copy the URL.');
+            });
+        }
+    </script>
 </head>
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 class="text-2xl font-bold mb-4">Your Shortened URL</h1>
-        <p class="mb-4">Short URL: <a href="/{{ short_url }}" class="text-blue-500">{{ request.host_url }}{{ short_url }}</a></p>
-        <p>Original URL: <a href="{{ long_url }}" class="text-blue-500" target="_blank">{{ long_url }}</a></p>
+        
+        <!-- Short URL Section -->
+        <div class="relative mb-6">
+            <p class="flex items-center">
+                Short URL: 
+                <a id="shortUrl" href="/{{ short_url }}" class="text-blue-500 ml-2">{{ request.host_url }}{{ short_url }}</a>
+            </p>
+            <button onclick="copyToClipboard()" class="absolute right-0 top-0 bg-gray-200 p-1.5 rounded-full hover:bg-gray-300">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" class="h-4 w-4">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier"> 
+                        <path d="M6 11C6 8.17157 6 6.75736 6.87868 5.87868C7.75736 5 9.17157 5 12 5H15C17.8284 5 19.2426 5 20.1213 5.87868C21 6.75736 21 8.17157 21 11V16C21 18.8284 21 20.2426 20.1213 21.1213C19.2426 22 17.8284 22 15 22H12C9.17157 22 7.75736 22 6.87868 21.1213C6 20.2426 6 18.8284 6 16V11Z" stroke="#000000" stroke-width="1.5"></path> 
+                        <path opacity="0.5" d="M6 19C4.34315 19 3 17.6569 3 16V10C3 6.22876 3 4.34315 4.17157 3.17157C5.34315 2 7.22876 2 11 2H15C16.6569 2 18 3.34315 18 5" stroke="#000000" stroke-width="1.5"></path> 
+                    </g>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Original URL Section -->
+        <p>Original URL: 
+            <a href="{{ long_url }}" class="text-blue-500" target="_blank">{{ long_url }}</a>
+        </p>
     </div>
 </body>
 </html>
