@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>ShortlySmart Register</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 class="text-2xl font-bold mb-4">Register</h1>
+        <!-- Branding Section -->
+        <div class="flex items-center justify-center mb-6">
+            <h1 class="text-3xl font-bold text-green-600 ml-3">ShortlySmart</h1>
+        </div>
+
+        <!-- Registration Form -->
+        <h2 class="text-2xl font-bold mb-4">Register</h2>
         <form method="post" class="space-y-4">
             <input type="text" name="username" placeholder="Username" class="w-full p-2 border rounded-lg" required>
             <input type="password" name="password" placeholder="Password" class="w-full p-2 border rounded-lg" required>
             <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600">Register</button>
         </form>
         <p class="mt-4 text-sm">Already have an account? <a href="{{ url_for('login') }}" class="text-blue-500">Login here</a></p>
+
+        <!-- Footer Section -->
+        <footer class="mt-6 text-center text-gray-500 text-xs">
+            © 2024 ShortlySmart. All rights reserved. <br>
+            Credits: Designed by <span class="text-green-500 font-semibold">CopyNothing</span>.
+        </footer>
     </div>
 </body>
 </html>
