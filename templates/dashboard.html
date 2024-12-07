@@ -10,7 +10,6 @@
         // Function to delete a specific link
         function deleteLink(shortUrl) {
             if (confirm("Are you sure you want to delete this link?")) {
-                // Send a request to the server to delete the link
                 window.location.href = `/delete_link/${shortUrl}`;
             }
         }
@@ -18,7 +17,6 @@
         // Function to clear all history
         function clearHistory() {
             if (confirm("Are you sure you want to clear all history?")) {
-                // Send a request to the server to clear history
                 window.location.href = '/clear_history';
             }
         }
@@ -40,9 +38,15 @@
 
         <h2 class="text-2xl font-semibold mt-8 mb-4">Your Shortened Links</h2>
         
-        <!-- Clear History Button -->
-        <button onclick="clearHistory()" class="inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-300 mb-4">Clear History</button>
-        
+        <!-- Buttons Section -->
+        <div class="flex space-x-4 mb-4">
+            <!-- Clear History Button -->
+            <button onclick="clearHistory()" class="inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-300">Clear History</button>
+            
+            <!-- Generate New Short Link Button -->
+            <a href="{{ url_for('index') }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">Generate New Short Link</a>
+        </div>
+
         <div class="bg-white shadow-md rounded-lg overflow-hidden">
             <ul class="divide-y divide-gray-200">
                 {% for link in links %}
