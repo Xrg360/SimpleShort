@@ -10,7 +10,7 @@
         // Function to delete a specific link
         function deleteLink(shortUrl) {
             if (confirm("Are you sure you want to delete this link?")) {
-                window.location.href = `/delete_link/${shortUrl}`;
+                window.location.href = '/delete_link/${shortUrl}';
             }
         }
 
@@ -44,7 +44,7 @@
             <button onclick="clearHistory()" class="inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-300">Clear History</button>
             
             <!-- Generate New Short Link Button -->
-            <a href="{{ url_for('index') }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">Generate New Short Link</a>
+            <a href="{{ url_for('index') }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">Generate New Link</a>
         </div>
 
         <div class="bg-white shadow-md rounded-lg overflow-hidden">
@@ -76,7 +76,7 @@
 
         <!-- Footer with credits -->
         <div class="mt-8 text-center text-sm text-gray-600">
-            <p>Powered by <strong>ShortlySmart</strong> | Credits to <strong>CopyNothing</strong></p>
+            <p>Powered by <strong>CopyNothing</strong> | Credits to <strong><a href="https://lifeofsankar.me">LOS5</a> x <a href="https://rovn.me">ROVN</a> x <a href="https://xrg.systems">XRG</a></strong> </p>
         </div>
     </div>
 
