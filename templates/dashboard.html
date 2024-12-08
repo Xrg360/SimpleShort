@@ -57,9 +57,11 @@
         
         <!-- Buttons Section -->
         <div class="flex space-x-4 mb-4">
-            <!-- Clear History Button -->
-            <button onclick="clearHistory()" class="inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-300">Clear History</button>
-            
+                    <!-- Clear History Button -->
+        <form action="{{ url_for('clear_history') }}" method="post">
+            <button type="submit" class="inline-block bg-yelloe-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Clear History</button>
+        </form>
+
             <!-- Generate New Short Link Button -->
             <a href="{{ url_for('index') }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">Generate New Link</a>
         </div>

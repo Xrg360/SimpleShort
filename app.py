@@ -67,6 +67,17 @@ def login():
             flash('Invalid username or password.', 'danger')
     return render_template('login.html')
 
+# Route to clear user's history
+@app.route('/clear_history', methods=['POST'])
+@login_required
+def clear_history():
+    try:
+        URLMapping.query.filter_by(user_id=current_user.id).delete()
+        db.session.commit()
+        flash('History cleared successfully!', 'success')
+    except Exception as e:
+        flash(f'Error clearing history: {str(e)}', 'danger')
+    return redirect(url_for('dashboard'))
 
 # Route to delete a specific link
 @app.route('/delete_link/<short_url>', methods=['DELETE'])
