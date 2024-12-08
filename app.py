@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask,jsonify, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import random
@@ -66,6 +66,23 @@ def login():
         else:
             flash('Invalid username or password.', 'danger')
     return render_template('login.html')
+
+
+# Route to delete a specific link
+@app.route('/delete_link/<short_url>', methods=['DELETE'])
+@login_required
+def delete_link(short_url):
+    try:
+        link = URLMapping.query.filter_by(short_url=short_url, user_id=current_user.id).first()
+        if link:
+            db.session.delete(link)
+            db.session.commit()
+            return jsonify({'message': 'Link deleted successfully'}), 200
+        else:
+            return jsonify({'error': 'Link not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 # Route for user logout
 @app.route('/logout')
